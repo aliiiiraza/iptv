@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8k World IPTV</title>
+    <style>
+      :root {
+  --primary: #6366f1; /* Indigo (Electric Blue/Purple) */
+  --bg: #0c0a1e;       /* Deep Navy */
+  --bg-alt: #1e1b4b;   /* Dark Purple */
+  --card: #312e81;     /* Medium Indigo */
+  --text: #f1f5f9;     /* Soft Light */
+  --text-muted: #a5b4fc; /* Muted Light Indigo */
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* ===== HEADER NAVIGATION ===== */
+      .navbar {
+        background-color: var(--bg-alt);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: var(--shadow);
+      }
+
+      .navbar h1 {
+        font-size: 1.5rem;
+        color: var(--primary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      header {
+        text-align: center;
+        padding: 5rem 1rem 3rem;
+        background: linear-gradient(135deg, #1e1b4b 0%, #0c0a1e 100%);
+
+      }
+
+      header h2 {
+        font-size: 2.25rem;
+        font-weight: bold;
+      }
+
+      header h2 span {
+        color: var(--primary);
+      }
+
+      header p {
+        margin-top: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        background: var(--primary);
+        border: none;
+        border-radius: 0.375rem;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #2563eb;
+      }
+
+      .stats {
+        margin-top: 2.5rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      section {
+        padding: 4rem 1rem;
+        text-align: center;
+      }
+
+      .bg-alt {
+        background-color: var(--bg-alt);
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+        color: var(--text);
+      }
+
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+
+      .card {
+        background: var(--card);
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .pricing {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .pricing-box {
+        background-color: var(--card);
+        padding: 2rem;
+        border-radius: 0.75rem;
+        width: 260px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s ease;
+      }
+
+      .pricing-box:hover {
+        transform: translateY(-6px);
+      }
+
+      .pricing-box h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-box p {
+        font-size: 1.2rem;
+        color: #fff;
+      }
+
+      footer {
+        background-color: var(--bg);
+        padding: 2rem 1rem;
+        text-align: center;
+        color: var(--text-muted);
+      }
+
+      /* ===== WHATSAPP BUTTON ===== */
+      .whatsapp-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 50%;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        z-index: 999;
+        transition: transform 0.2s ease;
+      }
+
+      .whatsapp-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* ===== MOBILE RESPONSIVENESS ===== */
+      @media (max-width: 768px) {
+        .nav-links {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: right;
+        }
+
+        .navbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 600px) {
+        header h2 {
+          font-size: 1.6rem;
+        }
+
+        h2 {
+          font-size: 1.4rem;
+        }
+
+        .pricing-box {
+          width: 100%;
+        }
+      }
+      .menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--bg-alt);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    box-shadow: var(--shadow);
+  }
+
+  .card h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+
+  .nav-links a {
+    padding: 1rem;
+    border-top: 1px solid #2c3e50;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+}
+
+.card, .pricing-box {
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- Navigation Header -->
+    <nav style="align-items: center;"  class="navbar">
+      <h1>8k World IPTV</h1>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+<div class="nav-links" id="nav-links">
+  <a href="#about">About</a>
+  <a href="#packages">Packages</a>
+  <a href="#devices">Devices</a>
+  <a href="#reseller">Reseller</a>
+</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+      <h2>
+        Premium IPTV Service with<br /><span
+          >Incredible Streaming Experience</span
+        >
+      </h2>
+      <p>20,000+ Channels • 45,000+ Movies • 24/7 Customer Support</p>
+      <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20getting%20a%20free%20IPTV%20trial." target="_blank">
+  <button class="btn">Get Free Trial</button>
+</a>
+
+      
+      <div class="stats">
+        <div>75K+ Customers</div>
+        <div>99.9% Uptime</div>
+        <div>4K/HD Streaming</div>
+      </div>
+    </header>
+
+    <!-- Sections -->
+    <section id="about">
+      <h2>About 8k World IPTV</h2>
+      <div class="grid grid-3">
+        <div class="card">20K+ Channels</div>
+        <div class="card">45K+ Movies</div>
+        <div class="card">24/7 Support</div>
+      </div>
+    </section>
+
+    <section class="bg-alt">
+      <h2>Why Choose 8k World IPTV</h2>
+      <div class="grid grid-4">
+        <div class="card">FHD / 4K Quality</div>
+        <div class="card">Instant Setup</div>
+        <div class="card">Stable Servers</div>
+        <div class="card">No Buffering</div>
+      </div>
+    </section>
+
+    <section>
+  <h2>Our Premium Servers</h2>
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>b1g Server</h3>
+      <p><b>Content from:</b> UK, USA, Ireland, Canada, Europe, France, Africa, Germany, Portugal, Asia</p>
+    </div>
+    <div class="card">
+      <h3>Lion OTT</h3>
+      <p><b>Content from:</b> Latin America, USA, Ireland, Canada, France, Middle East, Asia</p>
+    </div>
+    <div class="card">
+      <h3>4K OTT</h3>
+      <p><b>Content from:</b> USA, Europe, Latin, Africa, Asia, Middle East, Global 4K Channels</p>
+    </div>
+    <div class="card">
+      <h3>Extra OTT</h3>
+      <p><b>Content from:</b> Latin America, USA, Canada, Europe, Spain, France, Germany, Turkey, Asia</p>
+    </div>
+  </div>
+</section>
+
+
+    <section class="bg-alt" id="packages">
+      <h2 style="color: #3b82f6">Choose Your Package</h2>
+      <h3>Standard Plans</h3>
+      <br />
+      <div class="pricing">
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">1 Month</h3>
+          <p><b>£15</b></p>
+          <p style="font-size: medium">25,000+ Live Channels</p>
+          <p style="font-size: medium">65,500+ VOD Content</p>
+          <p style="font-size: medium">7,800+ TV Series</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Customer Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%201%20month%20Standard%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+
+        </div>
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">3 Months</h3>
+          <p><b>£30</b></p>
+          <p style="font-size: medium">25,000+ Live Channels</p>
+          <p style="font-size: medium">65,500+ VOD Content</p>
+          <p style="font-size: medium">7,800+ TV Series</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Customer Support</p>
+          <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%203%20months%20Standard%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">6 Months</h3>
+          <p><b>£40</b></p>
+          <p style="font-size: medium">25,000+ Live Channels</p>
+          <p style="font-size: medium">65,500+ VOD Content</p>
+          <p style="font-size: medium">7,800+ TV Series</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Customer Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%206%20months%20Standard%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">12 Months</h3>
+          <p><b>£60</b></p>
+          <p style="font-size: medium">25,000+ Live Channels</p>
+          <p style="font-size: medium">65,500+ VOD Content</p>
+          <p style="font-size: medium">7,800+ TV Series</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Customer Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%201%20Year%20Standard%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+      </div>
+      <br />
+
+      <h3>Premium Plans</h3>
+      <br />
+      <div class="pricing">
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">1 Month</h3>
+          <p><b>£20</b></p>
+          <p style="font-size: medium">30,000+ Live Channels</p>
+          <p style="font-size: medium">75,500+ VOD Content</p>
+          <p style="font-size: medium">9,000+ TV Series</p>
+          <p style="font-size: medium">4K Ultra HD Content</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Priority Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%201%20month%20Premium%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">3 Months</h3>
+          <p><b>£40</b></p>
+          <p style="font-size: medium">30,000+ Live Channels</p>
+          <p style="font-size: medium">75,500+ VOD Content</p>
+          <p style="font-size: medium">9,000+ TV Series</p>
+          <p style="font-size: medium">4K Ultra HD Content</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Priority Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%203%20month%20Premium%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">6 Months</h3>
+          <p><b>£60</b></p>
+          <p style="font-size: medium">30,000+ Live Channels</p>
+          <p style="font-size: medium">75,500+ VOD Content</p>
+          <p style="font-size: medium">9,000+ TV Series</p>
+          <p style="font-size: medium">4K Ultra HD Content</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Priority Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%206%20month%20Premium%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+
+        <div class="pricing-box">
+          <h3 style="color: #3b82f6">12 Months</h3>
+          <p><b>£100</b></p>
+          <p style="font-size: medium">30,000+ Live Channels</p>
+          <p style="font-size: medium">75,500+ VOD Content</p>
+          <p style="font-size: medium">9,000+ TV Series</p>
+          <p style="font-size: medium">4K Ultra HD Content</p>
+          <p style="font-size: medium">99.9% Server Uptime</p>
+          <p style="font-size: medium">24/7 Priority Support</p>
+           <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%201%20Year%20Premium%20Plan%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="devices">
+      <h2>Compatible Devices</h2>
+      <div class="grid grid-3">
+        <div class="card">Smart TVs</div>
+        <div class="card">Android & iOS</div>
+        <div class="card">Firestick, MAG & more</div>
+      </div>
+    </section>
+
+    <section class="bg-alt" id="reseller">
+      <h2>Become a Reseller</h2>
+      <p>
+        Start your own IPTV business with bulk discounts & a powerful control
+        panel.
+      </p>
+      <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20Reseller%20Plans.%20Please%20share%20details." target="_blank">
+  <button class="btn">Buy Now</button>
+</a>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 8k World IPTV. All rights reserved.</p>
+      <p>Contact: 8kworldiptv@gmail.com</p>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/447882981639?text=Hi%2C%20I%27m%20interested%20in%20buying%20your%20IPTV%20package.%20Please%20share%20details." target="_blank">
+  💬
+</a>
+
+      
+    </a>
+    <script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  toggleBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+  </body>
+</html>
